@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@0.5.13
+
+workflows:
+  version: 2
+  docker:
+    jobs:
+      - docker/publish:
+          context: docker-push
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: latest
+          filters:
+            branches:
+              only:
+                - master
